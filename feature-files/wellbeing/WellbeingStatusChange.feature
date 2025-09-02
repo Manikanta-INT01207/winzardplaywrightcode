@@ -1,0 +1,11 @@
+Feature: status change of an active survey 
+
+Scenario: changing the status of the survey
+
+Scenario Outline:
+Given user opens the wellbeing portal "<username>" and "<password>"
+Then user changes the status of the survey
+
+Examples:
+|username|password|
+|anirudha@interbiz.in|Winzard@2024|

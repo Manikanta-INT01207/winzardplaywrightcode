@@ -1,5 +1,7 @@
 package playwright;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import org.junit.Assert;
@@ -28,7 +30,7 @@ public class SelectedemployeeFeature extends BaseClass{
 //		choosefilter("Grade", "Grade-B");
 //		page.waitForTimeout(3000);
 //		Locator employee=page.locator("//mat-card[@class='custom-card mat-card ng-star-inserted']");
-//		Assert.assertTrue("employee selection mismatched after adding the filters",employee.isVisible());
+//		Assert.assertTrue("employee selection mismatched after adding the filters",employee.last().isVisible());
 //		List<ElementHandle>firstcount=page.querySelectorAll("//mat-card[@class='custom-card mat-card ng-star-inserted']");
 //		System.out.println("1st count"+firstcount.size());
 //		addingEmpsThroughIds("CAP-01,CAP-03");
@@ -46,33 +48,61 @@ public class SelectedemployeeFeature extends BaseClass{
 		
 		// set 2 customemp > empID > filter
 		
-//		selectCustomEmployee("CAP-37");
-//		Locator employee=page.locator("//mat-card[@class='custom-card mat-card ng-star-inserted']");
-//		Assert.assertTrue("employee selection mismatched after adding the filters",employee.last().isVisible());
-//		List<ElementHandle>firstcount=page.querySelectorAll("//mat-card[@class='custom-card mat-card ng-star-inserted']");
-//		System.out.println("1st count: "+firstcount.size());
-//		addingEmpsThroughIds("CAP-01,CAP-03");
-//		page.waitForTimeout(3000);
-//		List<ElementHandle>secondcount=page.querySelectorAll("//mat-card[@class='custom-card mat-card ng-star-inserted']");
-//		System.out.println("2nd count: "+secondcount.size());
-//		Assert.assertTrue("employee not displayed ",employee.last().isVisible());
-//
+		selectCustomEmployee("CAP-37");
+		Locator employee=page.locator("//mat-card[@class='custom-card mat-card ng-star-inserted']");
+		Assert.assertTrue("employee selection mismatched after adding the custom employee",employee.last().isVisible());
+		List<ElementHandle>firstcount=page.querySelectorAll("//mat-card//span[@class='title']");
+		Locator fcnt=page.locator("//mat-card//span[@class='title']").last();
+		String customemp=page.locator("//mat-card//span[@class='title']").textContent();
+		System.out.println(customemp);
+		System.out.println("//mat-card//span[text()='"+customemp+"']");
+		assertTrue("employee not displayed after added throuh custom emp",page.locator("//mat-card//span[text()='"+customemp+"']").isVisible());
+		
+		addingEmpsThroughIds("CAP-01,CAP-03");
+		page.waitForTimeout(3000);
+		List<ElementHandle>secondcount=page.querySelectorAll("//mat-card//span[@class='title']");
+		String EmpIDemp=page.locator("//mat-card//span[@class='title']").last().textContent();
+		System.out.println("2nd count emps "+EmpIDemp);
+		for (ElementHandle scndcount : secondcount) {
+			System.out.println(scndcount.innerText());
+
+		}
+		assertTrue("empID employee not displayed after adding through EmpID bar ",page.locator("//mat-card//span[text()='"+EmpIDemp+"']").isVisible());
+
+		assertTrue("employee not displayed after emps added throuh EmpID bar ",page.locator("//mat-card//span[text()='"+customemp+"']").isVisible());
+
+
 //		Assert.assertTrue("employee selection mismatched after adding the employee through ID's",secondcount.size()>firstcount.size());
-//
-//		choosefilter("Grade","Grade-B");
-//		List<ElementHandle>thirdcount=page.querySelectorAll("//mat-card[@class='custom-card mat-card ng-star-inserted']");
+
+		choosefilter("Grade","Grade A");
+		page.waitForTimeout(5000);
+		List<ElementHandle>thirdcount=page.querySelectorAll("//mat-card//span[@class='title']");
+		for (ElementHandle thrdcount : thirdcount) {
+			
+			assertTrue("empID employee not displayed",thrdcount.isVisible());
+			System.out.println(thrdcount.innerText());
+		}
+		
+		assertTrue("empID employee not displayed after adding emps through filters  ",page.locator("//mat-card//span[text()='"+EmpIDemp+"']").isVisible());
+
+		assertTrue("employee not displayed after emps added throuh filters ",page.locator("//mat-card//span[text()='"+customemp+"']").isVisible());
+
+		
+		
 //		int totalcount=(secondcount.size()+firstcount.size());
 //		System.out.println("3rd count"+thirdcount.size());
 //		//Assert.assertTrue("employee not displayed ",employee.last().isVisible());
 //
-//		Assert.assertTrue("employee selection mismatched after adding the custom employee",thirdcount.size()>totalcount);
+//		Assert.assertTrue("employee selection mismatched after adding the filters",thirdcount.size()>totalcount);
 //     
 
-		addingEmpsThroughIds("CAP-01,CAP-03");
-		Locator employee=page.locator("//mat-card[@class='custom-card mat-card ng-star-inserted']");
-		Assert.assertTrue("employee selection mismatched after adding the filters",employee.last().isVisible());
-		List<ElementHandle>firstcount=page.querySelectorAll("//mat-card[@class='custom-card mat-card ng-star-inserted']");
-		System.out.println("1st count: "+firstcount.size());
+		
+		
+//		addingEmpsThroughIds("CAP-01,CAP-03");
+//		Locator employee=page.locator("//mat-card[@class='custom-card mat-card ng-star-inserted']");
+//		Assert.assertTrue("employee selection mismatched after adding the filters",employee.last().isVisible());
+//		List<ElementHandle>firstcount=page.querySelectorAll("//mat-card[@class='custom-card mat-card ng-star-inserted']");
+//		System.out.println("1st count: "+firstcount.size());
 		
 
 		

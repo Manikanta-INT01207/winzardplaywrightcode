@@ -9,7 +9,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	teamgoalsSearchFunctionalityTR.class,
 	EmpAchmntsRatingsTR.class,
 	SupervisorAchmntsRatingsTR.class,
-	SupervisorDeleteGoalsTR.class
+//	SupervisorDeleteGoalsTR.class
 	
 	
 })

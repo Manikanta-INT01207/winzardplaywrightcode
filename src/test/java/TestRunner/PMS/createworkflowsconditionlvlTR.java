@@ -1,4 +1,4 @@
-package TestRunner;
+package TestRunner.PMS;
 
 import org.junit.runner.RunWith;
 
@@ -7,17 +7,13 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = {"feature-files/Engagement/EngagmentInsightgenerate.feature",
 
-
-		},
-		glue = {"stepDefnitions","Hooksteps"},
+		features = {"feature-files/PMS/assignworkflowsConditionlvl.feature"},
+		glue= {"stepDefnitions","Hooksteps"},
 		plugin = {"pretty","io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"}
 		
-
 		)
 
-
-public class testrunner {
+public class createworkflowsconditionlvlTR {
 
 }

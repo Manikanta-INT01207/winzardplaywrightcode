@@ -1,4 +1,4 @@
-package TestRunner;
+package TestRunner.PMS;
 
 import org.junit.runner.RunWith;
 
@@ -7,17 +7,20 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = {"feature-files/Engagement/EngagmentInsightgenerate.feature",
-
-
-		},
+		
+		features = {"feature-files/PMS/Createforms.feature"},
+		
 		glue = {"stepDefnitions","Hooksteps"},
+  
 		plugin = {"pretty","io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"}
 		
+		
 
+		
+		
+		
+		
 		)
-
-
-public class testrunner {
+public class CreateFormsTR {
 
 }

@@ -10,5 +10,5 @@ Then user generates the insights for particular survey using the dates "<startda
 
 Examples:
 |username|password|startdate|enddate|count|personnames|empid|
-|anirudha@interbiz.in|Winzard@2024|Sep 1, 2025|Sep 31, 2025|3|leadership,superadmin,custom employees|CAP-43|
+|anirudha@interbiz.in|Winzard@2024|Nov 9, 2025|Nov 30, 2025|3|leadership,superadmin,custom employees|CAP-43|
 

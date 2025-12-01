@@ -50,5 +50,31 @@ public class createworkplanSD extends BaseClass {
 		
 	}
 	
+	@Then("employee adds the comment and delete the comment to verify the functionality")
+	public void employee_adds_the_comment_and_delete_the_comment_to_verify_the_functionality() {
 	
+		page.locator("#workplan-edit-icon").click();
+		page.locator("#commentCreation").click();
+		page.locator("(//mat-icon[text()='delete'])[1]").click();
+		page.locator("//span[normalize-space()='Yes']").click();
+		
+		Locator msg=page.getByText("Comment Deleted Succesfully!!");
+		msg.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(30000));
+		assertTrue("Comment not deleted check the message in UI", msg.isVisible());
+
+	}
+	@Then("employee adds another {string}")
+	public void employee_adds_another(String comment) {
+		page.locator("#commentCreation").click();
+        page.locator("#comment-text-0").fill(comment);
+		page.getByText("Save").click();
+		
+		Locator confirmmsg = page.getByText("Workplan updated succesfully.");
+		confirmmsg.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(40000));
+		assertTrue("workplan not created", confirmmsg.isVisible());
+
+	    page.locator("#workplan-close-btn").click();
+
+	
+	}
 }

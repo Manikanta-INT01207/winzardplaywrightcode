@@ -10,3 +10,5 @@ Then admin creates the recommendations by adding the "<title>" and "<description
 Examples:
 |username|password|title|description|
 |anirudha@interbiz.in|Winzard@2024|title|description|
+|anirudha@interbiz.in|Winzard@2024||description|
+|anirudha@interbiz.in|Winzard@2024|title||

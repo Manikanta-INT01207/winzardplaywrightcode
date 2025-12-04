@@ -19,6 +19,6 @@ import io.cucumber.junit.CucumberOptions;
 		
 		)
 
-public class NegatieCreateworkplanScenarioTR {
+public class NegativeCreateworkplanScenarioTR {
 
 }

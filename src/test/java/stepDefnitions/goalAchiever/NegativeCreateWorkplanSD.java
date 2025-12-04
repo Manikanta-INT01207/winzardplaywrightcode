@@ -14,30 +14,30 @@ public class NegativeCreateWorkplanSD extends BaseClass {
 
 	@Then("employee misses to give the any of these workplan details of {string} , {string} , {string} , {string} , {string} , {string} , {string} , {string} and {string} then saves the workplan")
 	public void employee_misses_to_give_the_any_of_these_workplan_details_of_and_then_saves_the_workplan(String title, String description, String challengesAndSupport, String KPI, String target, String startdate, String enddate, String importanceFactor, String achievement) {
-	   
+
 		page.getByPlaceholder("Enter an title").fill(title);
 		page.getByPlaceholder("Describe your workplan").fill(description);
 		page.getByPlaceholder("Mention Challenges to achieve").fill(challengesAndSupport);
 		page.getByPlaceholder("Measurable metric used to Achieve").fill(KPI);
 		page.getByPlaceholder("Enter the target / KRA").fill(target);
-		
+
 		if (startdate.isEmpty()) {
-			
+
 		} else {
 			page.locator("input[formcontrolname='startDate']").click();
-			selectcalander(startdate);
+			negativecalendar(startdate);
 		}
-		
-		if (enddate.isEmpty()||startdate.isEmpty()) {
-			
+
+		if (enddate.isEmpty()||startdate.isEmpty()||page.locator("(//mat-form-field[contains(@class,'disable-click') and not(contains(@class,'custom-input'))])").isVisible()) {
+
 		} else {
 			page.locator("input[formcontrolname='endDate']").click();
-			selectcalander(enddate);
+			negativecalendar(enddate);
 		}
-		
-		
+
+
 		if (importanceFactor.isEmpty()) {
-			
+
 		} else {
 
 			page.locator("#workPlanIFactor").click();
@@ -53,22 +53,22 @@ public class NegativeCreateWorkplanSD extends BaseClass {
 			}
 
 		}
-		
-		
-				page.getByPlaceholder("Enter the achievement").fill(achievement);
+
+
+		page.getByPlaceholder("Enter the achievement").fill(achievement);
 		page.getByText("Save").click();
 		page.waitForTimeout(2000);
 		Locator savemessage = page.getByText("Workplan added succesfully.");
-		
+
 		//savemessage.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(40000));
 		assertFalse("workplan created without data", savemessage.isVisible());
 
-		
-		
+
+
 	}
 
-	
-	
-	
-	
+
+
+
+
 }

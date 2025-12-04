@@ -682,4 +682,98 @@ public class BaseClass {
 	 assertEquals("Search bar should be empty.", "", searchText);
 	}
 
+	public static void negativecalendar(String date) {
+		String startdate = date;
+
+		//Split by hyphen
+		String[] parts = startdate.split("-");
+
+		String stday = parts[0];    // "01"
+		String stmonth = parts[1];  // "apr"
+		String styear = parts[2];   // "2024"
+
+		
+		
+		try {
+		
+		
+		
+		//driver.findElement(By.xpath("//button[@aria-label='Choose month and year']")).click();
+		page.locator("//button[@aria-label='Choose month and year']").click();
+		//WebElement startyeartable=driver.findElement(By.xpath("//table[@class='mat-calendar-table']"));
+
+		ElementHandle startyeartable = page.waitForSelector("//table[@class='mat-calendar-table']");
+
+		//List<WebElement>startyearrows=startyeartable.findElements(By.tagName("tr"));
+		List<ElementHandle> startyearrows =startyeartable.querySelectorAll("tr");
+		for (ElementHandle styrrows : startyearrows) {
+			List<ElementHandle>startyearcolumns=styrrows.querySelectorAll("td");
+			for (ElementHandle styrcolmns : startyearcolumns) {
+				String year=styrcolmns.innerText();
+				if(year.equalsIgnoreCase(styear)) {
+					
+					if (page.locator("//td[contains(@class,'body-disabled') and contains(@aria-label,'"+year+"')]").isVisible()) {
+						page.keyboard().press("Escape");
+					} else {
+						styrcolmns.click();
+						break;
+					}
+					
+					//page.locator("//td[contains(@class,'body-disabled') and contains(@aria-label,'"+year+"')]");
+					
+					
+				}
+			}
+		}
+
+		ElementHandle  startmonthtable=page.waitForSelector("//table[@class='mat-calendar-table']");
+		List<ElementHandle>startmonthrows=startmonthtable.querySelectorAll("tr");
+		outer:
+			for (ElementHandle stmnthrows : startmonthrows) {
+				List<ElementHandle>startmonthcolumns=stmnthrows.querySelectorAll("td");
+				for (ElementHandle stmnthcolmns : startmonthcolumns) {
+					String month=stmnthcolmns.innerText();
+					if(month.equalsIgnoreCase(stmonth)) {
+						
+						if (page.locator("//td[contains(@class,'body-disabled') and contains(@aria-label,'"+stmonth+"')]").isVisible()) {
+							page.keyboard().press("Escape");
+						} else {
+							stmnthcolmns.click();
+							break outer;
+						}
+						
+						
+						
+					}
+				}
+			}
+		ElementHandle  startdatetable=page.waitForSelector("//table[@class='mat-calendar-table']");
+		List<ElementHandle>startdaterows=startdatetable.querySelectorAll("tr");
+		outer:
+			for (ElementHandle stdtrows : startdaterows) {
+				List<ElementHandle>startdatecolumns=stdtrows.querySelectorAll("td");
+				for (ElementHandle stdtcolmns : startdatecolumns) {
+					String datee=stdtcolmns.innerText();
+					if(datee.equalsIgnoreCase(stday)) {
+						
+
+						if (page.locator("//td[contains(@class,'body-disabled')]//div[text()='"+stday+"']").isVisible()) {
+							page.keyboard().press("Escape");
+						} else {
+							stdtcolmns.click();
+							break outer;
+						}
+						
+						stdtcolmns.click();
+						break outer;
+					}
+				}
+			}
+		
+	}
+	catch(Exception  e) {
+		
+	}
+	}
+	
 }

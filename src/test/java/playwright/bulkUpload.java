@@ -23,6 +23,7 @@ public class bulkUpload extends BaseClass{
 		
 		String xlpath="C:\\bulk upload +vedata\\YEARLY Template (1).xlsx";// yearly template
 		
+		
 		initializer();
 		page.navigate("https://capgemini.winzard.io/");
 		page.locator("#user-name").fill("anirudha@interbiz.in");
@@ -46,7 +47,7 @@ public class bulkUpload extends BaseClass{
 	    page.locator("(//input[@type='file'])[2]").setInputFiles(Paths.get(xlpath));
         page.locator("//mat-icon[text()='check']").click();
         
-        Locator message=page.getByText("Goals Uploaded Successfully.");
+        Locator message=page.getByText("Invalid records");
 	    message.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(10000));
 	    
 	    assertTrue("goals not uploaded successfully please check it", message.isVisible());

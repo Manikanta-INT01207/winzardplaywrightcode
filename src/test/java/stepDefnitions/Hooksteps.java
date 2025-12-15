@@ -20,7 +20,7 @@ public class Hooksteps extends BaseClass {
 	@Before
 	public void setup() {
          initializer();
-         page.navigate("https://capgemini.winzard.io");
+         page.navigate("https://capgemini.247hrm.co/");
 //         page.locator("//input[@formcontrolname='username']").fill("anirudha@interbiz.in");
 //         page.locator("//input[@formcontrolname='password']").fill("Winzard@2024");
 //         page.locator("//span[@class='mat-button-wrapper']").click();

@@ -210,6 +210,7 @@ public class selfGoalCreationNegativeCaseSD extends BaseClass{
 		successmessage.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(10000));
 		assertTrue("Goals created negative case failed please check it", successmessage.isVisible());
 		
+		page.waitForTimeout(2000);
 		
 	}
 	

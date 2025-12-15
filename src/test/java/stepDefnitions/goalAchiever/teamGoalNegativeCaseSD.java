@@ -1,43 +1,23 @@
-package playwright;
+package stepDefnitions.goalAchiever;
+
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
 import base.BaseClass;
+import io.cucumber.java.en.Then;
 
-public class goalcreationNegativeCase extends BaseClass{
+public class teamGoalNegativeCaseSD extends BaseClass{
 
-	public static void main(String[] args) {
-		
-	
-		initializer();
-		page.navigate("https://capgemini.247hrm.co/");
-		page.locator("#user-name").fill("anirudha@interbiz.in");
-		page.locator("#password").fill("Winzard@2024");
-		page.getByText("LOGIN").click();
-		page.locator("button[data-toggle='minimize']").click();
-		page.getByText("Goal Achiever").click();
-		page.getByText("Team Goals").click();
-		page.getByText("+ Create Goals").click();
-		
-		String goaltitle="";
-		String targettype="numeric";
-		String bandtype="upper band";
-		String weightage="40";
-		String goaltype="financial";
-		String goalKPI="kpi-3";
-		String target="4000";
-		String goalfrequencey="monthly";
-		String startdate="30-Dec-2025";
-		String enddate="31-Dec-2025";
-		String keypoint="key point-1";
-		String subgoaldata="1000";
-		String empnames="CAP-01,CAP-02";
-		
+	@Then("supervisor intentionally missed to fill the one of these data of {string},{string},{string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
+	public void supervisor_intentionally_missed_to_fill_the_one_of_these_data_of(String goaltitle, String targettype, String bandtype, String weightage, String goaltype, String goalKPI, String target, String goalfrequency, String startdate, String enddate, String empnames, String subgoaldata) {
+
+
+
 		String actualtitle[]=goaltitle.split(",");
 		String actualtargettype[]=targettype.split(",");
 		String actualbandtype[]=bandtype.split(",");
@@ -45,15 +25,19 @@ public class goalcreationNegativeCase extends BaseClass{
 		String actualgoaltype[]=goaltype.split(",");
 		String actualgoalkpi[]=goalKPI.split(",");
 		String actualtarget[]=target.split(",");
-		String actualfrequency[]=goalfrequencey.split(",");
+		String actualfrequency[]=goalfrequency.split(",");
 		String actualstartdate[]=startdate.split(",");
 		String actualenddate[]=enddate.split(",");
-		String actualkeypoint[]=keypoint.split(",");
+		//	String actualkeypoint[]=keypoint.split(",");
 		String actualempnames[]=empnames.split(",");
-		
+
+		page.getByText("+ Create Goals").click();
+
+
 		for(int i=0;i<actualtitle.length;i++) {
 
 			page.locator("(//input[@id='goalTitle'])[2]").click();
+
 			page.waitForTimeout(2000);
 			page.locator("(//input[@id='goalTitle'])[2]").fill(actualtitle[i]);
 			page.keyboard().press("Escape");
@@ -67,11 +51,11 @@ public class goalcreationNegativeCase extends BaseClass{
 						break;
 					}
 				}
-				
+
 				page.locator("(//input[@formcontrolname='weightage'])[2]").fill(actualweightage[i]);
-				
+
 				if (actualgoaltype[i].isEmpty()) {
-					
+
 				} else {
 
 					page.locator("(//mat-select[@id='goalType'])[2]").click();
@@ -84,22 +68,22 @@ public class goalcreationNegativeCase extends BaseClass{
 						}
 					}
 				}
-				
-				
-				
+
+
+
 
 				page.locator("(//textarea[@id='goalKpi'])[2]").fill(actualgoalkpi[i]);
 				page.locator("(//textarea[@formcontrolname='target'])[2]").fill(actualtarget[i]);
 				page.locator("(//mat-select[@id='goalFrequency'])[2]").click();
-				List<ElementHandle> goalfrequency =page.querySelectorAll("//span[@class='mat-option-text']");
-				for (ElementHandle goalfreq : goalfrequency) {
+				List<ElementHandle> goalfrequencyy =page.querySelectorAll("//span[@class='mat-option-text']");
+				for (ElementHandle goalfreq : goalfrequencyy) {
 					String targetfrequency=goalfreq.innerText().trim();
 					if(targetfrequency.equalsIgnoreCase(actualfrequency[i])) {
 						goalfreq.click();
 						break;
 					}
 				}
-				
+
 				if (actualstartdate[i].isEmpty()) {
 
 				} else {
@@ -114,26 +98,51 @@ public class goalcreationNegativeCase extends BaseClass{
 					negativecalendar(actualenddate[i]);
 				}
 
-				
-								
-				Locator empdropdrown=page.locator("(//mat-select[@id='goalAssignEmps'])[2]");
-				if(empdropdrown.isVisible()) {
-					empdropdrown.click();
+
+
+				page.locator("(//mat-select[@id='goalAssignEmps'])[2]").click();
+				Locator checkbox=page.locator("//mat-option[@aria-selected='true']");
+				if(checkbox.isVisible()) {
+					checkbox.click();
 					page.locator("//mat-option[@aria-selected='true']").click();
 					List<ElementHandle> empslist=page.querySelectorAll("//span[@class='mat-option-text']");
 					for(int j=1;j<=actualempnames.length;j++) {
-					for (ElementHandle emplist : empslist) {
-						
-						if(emplist.innerText().contains(actualempnames[j-1])) {
-							emplist.click();
-							break;
+						for (ElementHandle emplist : empslist) {
+
+							if(emplist.innerText().contains(actualempnames[j-1])) {
+								emplist.click();
+								break;
+							}
 						}
-					}
 					}
 					page.keyboard().press("Escape");
 				}
-				
-				page.locator("(//textarea[@formcontrolname='subgoalDescription'])[2]").fill(actualkeypoint[i]);
+
+				else {
+
+
+					if (actualempnames[i].isEmpty()) {
+
+					} else {
+						List<ElementHandle> empslist=page.querySelectorAll("//span[@class='mat-option-text']");
+						for(int j=1;j<=actualempnames.length;j++) {
+							for (ElementHandle emplist : empslist) {
+
+								if(emplist.innerText().contains(actualempnames[j-1])) {
+									emplist.click();
+									break;
+								}
+							}
+						}
+					}
+
+
+					page.keyboard().press("Escape");
+
+
+				}
+
+
 				List<ElementHandle>subgoals=page.querySelectorAll("//textarea[contains(@class, 'ng-invalid')and contains(@formcontrolname,'subGoalValue')]");
 				if(!subgoals.isEmpty()) {
 
@@ -155,9 +164,9 @@ public class goalcreationNegativeCase extends BaseClass{
 						break;
 					}
 				}
-				
+
 				if (actualbandtype[i].isEmpty()) {
-					
+
 				} else {
 
 					page.locator("//mat-select[@formcontrolname='bandType']").click();
@@ -170,16 +179,16 @@ public class goalcreationNegativeCase extends BaseClass{
 						}
 					}
 				}
-				
+
 				page.locator("(//input[@formcontrolname='weightage'])[2]").fill(actualweightage[i]);
-				
+
 				if (actualgoaltype[i].isEmpty()) {
-					
-					
-					
+
+
+
 				} else {
 
-					
+
 					page.locator("(//mat-select[@id='goalType'])[2]").click();
 					List<ElementHandle> goaltypes =page.querySelectorAll("//span[@class='mat-option-text']");
 					for (ElementHandle goaltype1 : goaltypes) {
@@ -191,21 +200,21 @@ public class goalcreationNegativeCase extends BaseClass{
 					}
 
 				}
-				
 
-				
+
+
 				page.locator("(//textarea[@id='goalKpi'])[2]").fill(actualgoalkpi[i]);
 				page.locator("(//textarea[@formcontrolname='target'])[2]").fill(actualtarget[i]);
 				page.locator("(//mat-select[@id='goalFrequency'])[2]").click();
-				List<ElementHandle> goalfrequency =page.querySelectorAll("//span[@class='mat-option-text']");
-				for (ElementHandle goalfreq : goalfrequency) {
+				List<ElementHandle> goalfrequencyy =page.querySelectorAll("//span[@class='mat-option-text']");
+				for (ElementHandle goalfreq : goalfrequencyy) {
 					String targetfrequency=goalfreq.innerText().trim();
 					if(targetfrequency.equalsIgnoreCase(actualfrequency[i])) {
 						goalfreq.click();
 						break;
 					}
 				}
-				
+
 				if (actualstartdate[i].isEmpty()) {
 
 				} else {
@@ -219,35 +228,57 @@ public class goalcreationNegativeCase extends BaseClass{
 					page.locator("(//input[@formcontrolname='endDate'])[2]").click();
 					negativecalendar(actualenddate[i]);
 				}
-				
-				
-				Locator empdropdrown=page.locator("(//mat-select[@id='goalAssignEmps'])[2]");
-				if(empdropdrown.isVisible()) {
-					empdropdrown.click();
-					page.locator("//mat-option[@aria-selected='true']").click();
-					
+
+
+				page.locator("(//mat-select[@id='goalAssignEmps'])[2]").click();
+				Locator checkbox=page.locator("//mat-option[@aria-selected='true']");
+				if(checkbox.isVisible()) {
+					checkbox.click();
+
 					if (actualempnames[i].isEmpty()) {
-						
+
 					} else {
 						List<ElementHandle> empslist=page.querySelectorAll("//span[@class='mat-option-text']");
 						for(int j=1;j<=actualempnames.length;j++) {
-						for (ElementHandle emplist : empslist) {
-							
-							if(emplist.innerText().contains(actualempnames[j-1])) {
-								emplist.click();
-								break;
+							for (ElementHandle emplist : empslist) {
+
+								if(emplist.innerText().contains(actualempnames[j-1])) {
+									emplist.click();
+									break;
+								}
 							}
 						}
-						}
 					}
-					
-					
-					
+
+
+
 					page.keyboard().press("Escape");
 				}
-				
-				
-				page.locator("(//textarea[@formcontrolname='subgoalDescription'])[2]").fill(actualkeypoint[i]);
+				else {
+
+
+					if (actualempnames[i].isEmpty()) {
+
+					} else {
+						List<ElementHandle> empslist=page.querySelectorAll("//span[@class='mat-option-text']");
+						for(int j=1;j<=actualempnames.length;j++) {
+							for (ElementHandle emplist : empslist) {
+
+								if(emplist.innerText().contains(actualempnames[j-1])) {
+									emplist.click();
+									break;
+								}
+							}
+						}
+					}
+
+
+					page.keyboard().press("Escape");
+
+
+				}
+
+
 				List<ElementHandle>subgoals=page.querySelectorAll("//textarea[contains(@class, 'ng-invalid')and contains(@formcontrolname,'subGoalValue')]");
 				if(!subgoals.isEmpty()) {
 
@@ -257,7 +288,7 @@ public class goalcreationNegativeCase extends BaseClass{
 				}
 				page.waitForTimeout(2000);
 
-				
+
 			}
 
 		}
@@ -265,13 +296,9 @@ public class goalcreationNegativeCase extends BaseClass{
 		page.locator("//button[text()='Publish goal']").click();
 		Locator successmessage=page.getByText("Please fill all mandatory fields");
 		successmessage.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(10000));
-		if(successmessage.isVisible()) {
-			System.out.println("goals created successfully");
-		}
-		else {
-			System.out.println("goals not created successfully");
-		}
-		
+		assertTrue("goals created please check it", successmessage.isVisible());
+
+		page.waitForTimeout(2000);
 
 	}
 

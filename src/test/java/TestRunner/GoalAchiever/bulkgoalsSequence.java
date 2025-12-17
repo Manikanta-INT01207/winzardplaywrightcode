@@ -7,11 +7,13 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 	
+	Empselectionbulkgoal1TR.class,
+	EmpselectionbulkGoal2TR.class,
+	FilterClearFunctionalityTR.class,
 	bulkgoalcreationTR.class,
 	bulkgoalSearchFunctionalityTR.class,
-	EmpAchmntsRatingsTR.class,
-	SupervisorAchmntsRatingsTR.class,
-	AdminBulkgoalDeletionTR.class
+	AdminBulkgoalDeletionTR.class,
+	bulkGoalNegativeCaseTR.class
 	
 	
 })

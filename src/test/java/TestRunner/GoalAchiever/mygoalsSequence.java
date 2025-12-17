@@ -9,9 +9,11 @@ import org.junit.runners.Suite.SuiteClasses;
 		
     selfGoalCreationTR.class,
     ApprovalorRejectionOfGoalTR.class,
+    ResubmissionOfRejectedGoalTR.class,
     SearchFunctionalityMygoalsTabTR.class,
 	EmpAchmntsRatingsTR.class,
-	SupervisorAchmntsRatingsTR.class
+	SupervisorAchmntsRatingsTR.class,
+	selfGoalCreationNegativeCaseTR.class
 		
 		
 		

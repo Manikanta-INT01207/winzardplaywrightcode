@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
 	
 	mygoalsSequence.class,
 	teamgoalsSequence.class,
-	bulkgoalsSequence.class
+	bulkgoalsSequence.class,
+	bulkUploadSequence.class
 	
 	
 	

@@ -11,8 +11,8 @@ import io.cucumber.junit.Cucumber;
 		
 	NegativeCreateworkplanScenarioTR.class,
 	createworkplanTR.class,
+	editworkPlanByEmpTR.class,
 	workplanCommentsAndEditCommentsByManagerTR.class,
-	workplanStatusChangeAndRatingByEmpTR.class,
 	workplanStatusChangeAndRatingByEmpTR.class,
 	workplanRatingByManagerTR.class,
 	deleteWorkplanTR.class

@@ -3,15 +3,16 @@ package TestRunner.GoalAchiever;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+
 @RunWith(Suite.class)
 @SuiteClasses({
-	teamGoalCreationTR.class,
-	teamgoalsSearchFunctionalityTR.class,
-	SupervisorDeleteGoalsTR.class,
-	teamGoalsNegativeCaseTR.class
+	
+	bulkUploadTR.class,
+	bulkUploadNegativeScenarioTR.class
+	
 	
 })
 
-public class teamgoalsSequence {
+public class bulkUploadSequence {
 
 }

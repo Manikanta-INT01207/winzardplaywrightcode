@@ -73,9 +73,10 @@ public class bulkgoalSearchFunctionalitySD  extends BaseClass{
 		page.locator("//input[@id='org-level-emp-search-bar']").click();
 		page.locator("//input[@id='org-level-emp-search-bar']").fill(empID);
 		page.locator("//span[contains(text(),'"+empID+"')]").click();
-		page.waitForTimeout(2000);
+        Locator goaltable=page.locator("(//tr[@class='row-ACTIVE ng-star-inserted'])[1]");
+        goaltable.waitFor();
 		assertTrue("Expected more than one active goal row", goals2.count() > 1);
-
+        page.waitForTimeout(3000);
 
 	}
 

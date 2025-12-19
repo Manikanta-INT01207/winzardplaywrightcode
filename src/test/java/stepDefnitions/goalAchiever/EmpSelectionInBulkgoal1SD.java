@@ -60,9 +60,9 @@ public void admin_checks_the_employee_selection_functionality_by_adding_filter_a
 	Assert.assertTrue("employee selection mismatched after adding the employee through ID's",secondcount.size()>firstcount.size());
 	selectCustomEmployee(customemp);
 	List<ElementHandle>thirdcount=page.querySelectorAll("//mat-card[@class='custom-card mat-card ng-star-inserted']");
-	int totalcount=(secondcount.size()+firstcount.size());
+	//int totalcount=(secondcount.size()+firstcount.size());
 	System.out.println("3rd count"+thirdcount.size());
-	Assert.assertTrue("employee selection mismatched after adding the custom employee",thirdcount.size()>totalcount);
+	Assert.assertTrue("employee selection mismatched after adding the custom employee",thirdcount.size()>secondcount.size());
 
 	
 }

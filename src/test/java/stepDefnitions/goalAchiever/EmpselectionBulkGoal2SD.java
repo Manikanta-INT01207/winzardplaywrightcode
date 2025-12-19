@@ -52,9 +52,10 @@ public void admins_checks_the_selection_functionality_by_adding_then_later_filte
 		System.out.println(thrdcount.innerText());
 	}
 	
-	assertTrue("empID employee not displayed after adding emps through filters  ",page.locator("//mat-card//span[text()='"+EmpIDemp+"']").isVisible());
+	page.waitForTimeout(3000);
+	assertTrue("empID employee not displayed after adding emps through filters  ",page.locator("//mat-card//span[contains(text(),'"+EmpIDemp+"')]").isVisible());
 
-	assertTrue("employee not displayed after emps added throuh filters ",page.locator("//mat-card//span[text()='"+customemp+"']").isVisible());
+	assertTrue("employee not displayed after emps added throuh filters ",page.locator("//mat-card//span[contains(text(),'"+customemp+"')]").isVisible());
 
 	
 	

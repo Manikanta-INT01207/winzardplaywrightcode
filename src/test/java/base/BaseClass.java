@@ -455,6 +455,7 @@ public class BaseClass {
 
 			page.locator("(//input[@id='goalTitle'])[2]").click();
 			page.locator("(//input[@id='goalTitle'])[2]").fill(actualtitle[i]);
+			page.keyboard().press("Escape");
 			page.locator("(//mat-select[@formcontrolname='targetType'])[2]").click();
 			if(actualtargettype[i].equalsIgnoreCase("Alphanumeric")) {
 				List<ElementHandle> targetdrodowns=page.querySelectorAll("//span[@class='mat-option-text']");
@@ -527,7 +528,7 @@ public class BaseClass {
 						subgoall.fill(subgoaldata);
 					}
 				}
-				page.waitForTimeout(2000);
+				page.waitForTimeout(3000);
 				page.locator("//button[text()='Add to list']").click();
 				Locator latestGoal = page.locator("//mat-card[@class='custom-card mat-card ng-star-inserted']").last();
 				latestGoal.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
@@ -586,18 +587,53 @@ public class BaseClass {
 				Locator empdropdrown=page.locator("(//mat-select[@id='goalAssignEmps'])[2]");
 				if(empdropdrown.isVisible()) {
 					empdropdrown.click();
-					page.locator("//mat-option[@aria-selected='true']").click();
-					List<ElementHandle> empslist=page.querySelectorAll("//span[@class='mat-option-text']");
-					for(int j=1;j<=actualempnames.length;j++) {
-					for (ElementHandle emplist : empslist) {
-						
-						if(emplist.innerText().contains(actualempnames[j-1])) {
-							emplist.click();
-							break;
+					
+					Locator checkbox=page.locator("//mat-option[@aria-selected='true']");
+					if(checkbox.isVisible()) {
+						checkbox.click();
+
+						if (actualempnames[i].isEmpty()) {
+
+						} else {
+							List<ElementHandle> empslist=page.querySelectorAll("//span[@class='mat-option-text']");
+							for(int j=1;j<=actualempnames.length;j++) {
+								for (ElementHandle emplist : empslist) {
+
+									if(emplist.innerText().contains(actualempnames[j-1])) {
+										emplist.click();
+										break;
+									}
+								}
+							}
 						}
+
+
+
+						page.keyboard().press("Escape");
 					}
+					else {
+
+
+						if (actualempnames[i].isEmpty()) {
+
+						} else {
+							List<ElementHandle> empslist=page.querySelectorAll("//span[@class='mat-option-text']");
+							for(int j=1;j<=actualempnames.length;j++) {
+								for (ElementHandle emplist : empslist) {
+
+									if(emplist.innerText().contains(actualempnames[j-1])) {
+										emplist.click();
+										break;
+									}
+								}
+							}
+						}
+
+
+						page.keyboard().press("Escape");
+
+
 					}
-					page.keyboard().press("Escape");
 				}
 				
 				

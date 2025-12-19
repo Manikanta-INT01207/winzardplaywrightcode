@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 	
 	mygoalsSequence.class,
+	workplansequence.class,
 	teamgoalsSequence.class,
 	bulkgoalsSequence.class,
 	bulkUploadSequence.class

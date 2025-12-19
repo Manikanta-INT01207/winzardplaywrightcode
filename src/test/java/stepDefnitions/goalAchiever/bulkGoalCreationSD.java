@@ -71,6 +71,7 @@ public class bulkGoalCreationSD extends BaseClass {
 			
 		page.locator("(//input[@formcontrolname='goalTitle'])[" + (i+2) + "]").click();
 		page.locator("(//input[@formcontrolname='goalTitle'])[" + (i+2) + "]").fill(actualtitle[i]);
+		page.keyboard().press("Escape");
 		page.locator("(//mat-select[@formcontrolname='targetType'])[" + (i+2) + "]").click();
 		if(actualtargettype[i].equalsIgnoreCase("Alphanumeric")) {
 		List<ElementHandle> targetdrodowns=page.querySelectorAll("//span[@class='mat-option-text']");

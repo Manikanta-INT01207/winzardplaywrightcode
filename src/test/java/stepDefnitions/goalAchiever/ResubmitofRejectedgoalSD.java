@@ -32,6 +32,9 @@ public class ResubmitofRejectedgoalSD extends BaseClass {
 	   
 		page.locator("//button[@type='button']").click();
 		page.locator("//span[text()='Goal Achiever']").click();
+		
+		Locator goaltable=page.locator("//table[@class='mat-table']");
+		goaltable.waitFor();
 		Locator rejectedrows=page.locator("//tr[contains(@class,'REJECTED')]//mat-icon[@id='edit-goal-btn']");
 		System.out.println(rejectedrows.count());
 		while(rejectedrows.count()>0) {
